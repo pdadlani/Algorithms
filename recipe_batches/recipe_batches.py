@@ -3,7 +3,17 @@
 import math
 
 def recipe_batches(recipe, ingredients):
-  pass
+  min_batches = float('inf')
+  for item in recipe:
+    if item not in ingredients.keys():
+      return 0
+
+    num_batches = ingredients[item] // recipe[item]
+
+    if num_batches < min_batches:
+      min_batches = num_batches
+
+  return min_batches
 
 if __name__ == '__main__':
   # Change the entries of these dictionaries to test 
