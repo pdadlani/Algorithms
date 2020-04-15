@@ -3,7 +3,12 @@
 import argparse
 
 def find_max_profit(prices):
-  pass
+  max_profit = prices[1] - prices[0]
+  for i in range(len(prices) - 1):
+    for second in prices[i+1:]:
+      if (second - prices[i]) > max_profit:
+        max_profit = second - prices[i]
+  return max_profit
 
 if __name__ == '__main__':
   # This is just some code to accept inputs from the command line
