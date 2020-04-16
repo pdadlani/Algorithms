@@ -10,12 +10,9 @@ def eating_cookies(n, cache={}):
     return 1
   elif n == 2:
     return 2
-  elif n in cache:
-    return cache[n]
-  else:
-    answer = eating_cookies(n-1) + eating_cookies(n-2) + eating_cookies(n-3)
-    cache[n] = answer
-    return answer
+  elif n not in cache:
+    cache[n] = eating_cookies(n-1) + eating_cookies(n-2) + eating_cookies(n-3)
+  return cache[n]
 
 
 if __name__ == "__main__":
