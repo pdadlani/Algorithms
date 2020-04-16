@@ -2,8 +2,17 @@
 
 import sys
 
-def making_change(amount, denominations):
-  pass 
+def making_change(amount, denominations, cache=None):
+  if cache is None:
+    cache = [0] * (amount+1)
+    cache[0] = 1
+
+  for coin in denominations:
+    for higher_amts in range(coin, amount+1):
+      difference = higher_amts - coin
+      cache[higher_amts] += cache[difference]
+  return cache[amount]
+    
 
 
 if __name__ == "__main__":
