@@ -2,23 +2,22 @@
 
 import sys
 
-def rock_paper_scissors(n):
+def rock_paper_scissors(n, cache={}):
   options = ['rock', 'paper', 'scissors']
   output = []
 
   if n == 0: return [[]]
   elif n == 1:
     return [[x] for x in options]
-  else:
+  elif n not in cache:
+
     prev_output = rock_paper_scissors(n-1)
-    # return [[['rock'] + x for x in prev_output] + [['paper'] + x for x in prev_output] + [['scissors'] + x for x in prev_output]]
-    # output = []
     for item in prev_output:
-      output.append(item + ['rock'])
-      output.append(item + ['paper'])
-      output.append(item + ['scissors'])
-    #   output += [option] + rock_paper_scissors(n-1)
-    return output
+      output.append(item + [options[0]])
+      output.append(item + [options[1]])
+      output.append(item + [options[2]])
+      cache[n] = output
+  return cache[n]
 
 if __name__ == "__main__":
   if len(sys.argv) > 1:
